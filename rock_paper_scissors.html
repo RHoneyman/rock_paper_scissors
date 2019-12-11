@@ -18,6 +18,20 @@
           return letters.join("");
       }
 
+      function isValid(selection) {
+          if (selection === null) {
+              return false;
+          }
+
+          selection = String(selection).toLowerCase();
+          
+          if (selection == 'rock' || selection == 'paper' || selection == 'scissors') {
+              return true;
+          } else {
+              return false;
+          }
+      }
+
       function computerPlay() {
         let options = ["rock", "paper", "scissors"];
         return options[getRandomNum(3)];
@@ -28,6 +42,15 @@
       }
 
       function playRound(playerSelection, computerSelection) {
+
+
+          while (!isValid(playerSelection)) {
+            if (playerSelection === null) {
+                return "You forfeit this round!";
+            }
+            playerSelection = prompt("Invalid entry. Please try again");
+          }
+
           playerSelection = playerSelection.toLowerCase();
           
           if (playerSelection == computerSelection) {

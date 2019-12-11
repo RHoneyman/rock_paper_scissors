@@ -8,7 +8,53 @@
 <body>
 
   <script>
+      function capitalize(string) {
+          let letters = string.split("");
+          letters[0] = letters[0].toUpperCase();
+          for (let i = 1, n = string.length; i < n; i++) {
+              letters[i] = letters[i].toLowerCase();
+          }
 
+          return letters.join("");
+      }
+
+      function computerPlay() {
+        let options = ["rock", "paper", "scissors"];
+        return options[getRandomNum(3)];
+      }
+
+      function getRandomNum(x) {
+          return Math.floor(Math.random() * x);
+      }
+
+      function playRound(playerSelection, computerSelection) {
+          playerSelection = playerSelection.toLowerCase();
+          
+          if (playerSelection == computerSelection) {
+              return `Tie! Both players chose ${capitalize(playerSelection)}`;
+          } else if (playerSelection == "rock" && computerSelection == "paper") {
+              return "You lose! Paper beats Rock";
+          } else if (playerSelection == "paper" && computerSelection == "scissors") {
+              return "You lose! Scissors beats Paper";
+          } else if (playerSelection == "scissors" && computerSelection == "rock") {
+              return "You lose! Rock beats Scissors";
+          } else if (playerSelection == "paper" && computerSelection == "rock") {
+              return "You win! Paper beats Rock";
+          } else if (playerSelection == "scissors" && computerSelection == "paper") {
+              return "You win! Scissors beats Paper";
+          } else if (playerSelection == "rock" && computerSelection == "scissors") {
+              return "You win! Rock beats Scissors";
+          }
+      }
+
+      function game() {
+          for (let i = 0; i < 5; i++) {
+              console.log(playRound(prompt("Enter Rock, Scissors, or Paper"), 
+                computerPlay()));
+          }
+      }
+
+      game();
  
 
   </script>

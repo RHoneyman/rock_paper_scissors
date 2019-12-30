@@ -1,83 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>Rock Paper Scissors</title>
-  
+  <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-  <script>
-      function capitalize(string) {
-          let letters = string.split("");
-          letters[0] = letters[0].toUpperCase();
-          for (let i = 1, n = string.length; i < n; i++) {
-              letters[i] = letters[i].toLowerCase();
-          }
-
-          return letters.join("");
-      }
-
-      function isValid(selection) {
-          if (selection === null) {
-              return false;
-          }
-
-          selection = String(selection).toLowerCase();
-          
-          if (selection == 'rock' || selection == 'paper' || selection == 'scissors') {
-              return true;
-          } else {
-              return false;
-          }
-      }
-
-      function computerPlay() {
-        let options = ["rock", "paper", "scissors"];
-        return options[getRandomNum(3)];
-      }
-
-      function getRandomNum(x) {
-          return Math.floor(Math.random() * x);
-      }
-
-      function playRound(playerSelection, computerSelection) {
+  <div id="container">
+    <div id="selection">
+      <button class="choice" id="rock">Rock</button>
+      <button class="choice" id="paper">Paper</button>
+      <button class="choice" id="scissors">Scissors</button>
+    </div>
+    <div id="info">
+      <div id="announce">MAKE YOUR CHOICE</div>
+      <button id="play">Play Again?</button>
+      <div id="results">
+        <p id='playerResults'>Player: <span id='playerScore'>0</span></p>
+        <p id='computerResults'>Computer: <span id='computerScore'>0</span></p>
+      </div>
+    </div>
+  </div>
 
 
-          while (!isValid(playerSelection)) {
-            if (playerSelection === null) {
-                return "You forfeit this round!";
-            }
-            playerSelection = prompt("Invalid entry. Please try again");
-          }
 
-          playerSelection = playerSelection.toLowerCase();
-          
-          if (playerSelection == computerSelection) {
-              return `Tie! Both players chose ${capitalize(playerSelection)}`;
-          } else if 
-            ((playerSelection == "rock" && computerSelection == "paper") ||
-            (playerSelection == "paper" && computerSelection == "scissors") || 
-            (playerSelection == "scissors" && computerSelection == "rock")) {
-              return `You lose! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}`;
-          } else if 
-            ((playerSelection == "paper" && computerSelection == "rock") || 
-            (playerSelection == "scissors" && computerSelection == "paper") || 
-            (playerSelection == "rock" && computerSelection == "scissors")) {
-              return `You win! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}`;
-          }
-      }
 
-      function game() {
-          for (let i = 0; i < 5; i++) {
-              console.log(playRound(prompt("Enter Rock, Scissors, or Paper"), 
-                computerPlay()));
-          }
-      }
-
-      game();
- 
-
-  </script>
+<script src="script.js"></script>
 </body>
+
 </html>
